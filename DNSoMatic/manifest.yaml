@@ -1,0 +1,36 @@
+apiVersion: v1
+data:
+  PASSWORD: <insert here>
+  USERID: <insert here>
+kind: Secret
+metadata:
+  name: dnsomatic-creds
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dnsomatic-deployment
+  labels:
+    app: dnsomatic
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dnsomatic
+  template:
+    metadata:
+      labels:
+        app: dnsomatic
+    spec:
+      containers:
+      - name: dnsomatic
+        image: jcostom/dnsomatic-update
+        env:
+        - name: TZ
+          value: 'Indian/Mauritius'
+          
+        envFrom:
+        - secretRef:
+            name: dnsomatic-creds

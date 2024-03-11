@@ -1,0 +1,51 @@
+# First, add the API
+apiVersion: apps/v1
+# This will be the deployment setup
+kind: Deployment
+metadata:
+  # Name your Deployment here
+  name: frontendweb
+  labels:
+    # label your deployment
+    app: frontendweb
+spec:
+  # The number of pods/replicas to run
+  replicas: 1
+  selector:
+    matchLabels:
+    # selector to match the pod
+      app: frontendweb
+  template:
+    metadata:
+      labels:
+      # label your pod
+        app: frontendweb
+    spec:
+      containers:
+      # Add the container name for Kubernetes
+      - name: frontendweb
+      # Add the local image name
+        image: frontendweb:latest
+        # never pull the image policy
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 3000
+
+---
+# First, add the Service API
+apiVersion: v1
+# This will be the Service setup
+kind: Service
+metadata:
+  # Your service name
+  name: frontendweb-svc
+spec:
+  selector:
+    # selector that matches the pod
+    app: frontendweb
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3000
+  # type of service
+  type: LoadBalancer

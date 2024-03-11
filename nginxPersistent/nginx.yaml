@@ -1,0 +1,39 @@
+# nginx-pod.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  labels:
+    app: nginxpvc
+spec:
+  volumes:
+    - name: web-content
+      persistentVolumeClaim:
+        claimName: nginx-pvc
+    - name: nginx-config
+      configMap:
+        name: nginx-config
+  containers:
+    - name: nginx-container
+      image: nginx
+      volumeMounts:
+        - name: web-content
+          mountPath: /usr/share/nginx/html
+        - name: nginx-config
+          subPath: nginx.conf
+          mountPath: /etc/nginx/conf.d/default.conf
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service-pv
+spec:
+  selector:
+    app: nginxpvc
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
+
