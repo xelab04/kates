@@ -1,0 +1,49 @@
+---
+
+- name: InstallK3sInitMaster
+  hosts: initmaster
+  gather_facts: true
+
+  tasks:
+
+    # Need to add env vars
+    - name: Install K3S
+      become: true
+      #INSTALL_K3S_EXEC="server"
+      block:
+        - shell: >
+            curl -sfL https://get.k3s.io |
+            sh -s - server --cluster-init
+
+    - name: Retreive K3S_TOKEN
+      become: true
+      shell: cat /var/lib/rancher/k3s/server/node-token
+      register: CAT_OUT
+
+    - set_fact:
+        K3S_TOKEN: "{{CAT_OUT.stdout}}"
+
+- name: JoinMasters
+  hosts: masters
+
+  tasks:
+
+    - name: Install K3S
+      become: true
+      block:
+      - shell: curl -sfL https://get.k3s.io | K3S_TOKEN={{hostvars[groups['initmaster'][0]].K3S_TOKEN}} sh -s - server --server https://{{hostvars[groups['initmaster'][0]]['ansible_default_ipv4']['address']}}:6443
+
+- name: JoinWorkers
+  hosts: workers
+
+  tasks:
+
+    - name: Install K3S
+      become: true
+      block:
+        - shell: >
+            curl -sfL https://get.k3s.io |
+            INSTALL_K3S_EXEC="agent"
+            K3S_URL=https://{{hostvars[groups['initmaster'][0]]['ansible_default_ipv4']['address']}}:6443
+            K3S_TOKEN={{hostvars[groups['initmaster'][0]].K3S_TOKEN}}
+            sh -
