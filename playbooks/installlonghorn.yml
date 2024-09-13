@@ -1,0 +1,19 @@
+---
+
+- name: InstallK3sInitMaster
+  hosts: all
+  gather_facts: true
+
+  tasks:
+
+    - name: Install packages
+      become: true
+      zypper:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - open-iscsi
+        - awk
+        #- blkid
+        #- lsblk
+        #- findmnt
