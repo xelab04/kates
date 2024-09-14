@@ -18,32 +18,41 @@ spec:
           ports:
             - containerPort: 2368
           volumeMounts:
-            - name: cse-ghost-data
+            - name: ghost-data
               mountPath: /var/lib/ghost/content
 
           env:
             - name: database__client
               value: mysql
             - name: database__connection__host
-              value: "10.43.171.121"
+              value: "mysql-service"
             - name: database__connection__user
-              value: "alex"
+              valueFrom:
+                secretKeyRef:
+                  name: ghostdbsecrets
+                  key: MYSQL_USER
             - name: database__connection__password
-              value: "CNiko4zb"
+              valueFrom:
+                secretKeyRef:
+                  name: ghostdbsecrets
+                  key: MYSQL_PASSWORD
             - name: database__connection__database
-              value: "ghostdb"
+              valueFrom:
+                secretKeyRef:
+                  name: ghostdbsecrets
+                  key: MYSQL_DB
             - name: database__connection__port
               value: "3306"
             - name: url
-              value: "http://192.168.1.216"
+              value: "https://alexbissessur.dev"
 
       nodeSelector:
         storage: "false"
 
       volumes:
-        - name: cse-ghost-data
+        - name: ghost-data
           persistentVolumeClaim:
-            claimName: cse-ghost-data
+            claimName: ghost-data
 
 ---
 apiVersion: v1
@@ -60,4 +69,4 @@ spec:
       port: 80
       targetPort: 2368
   externalIPs:
-    - 192.168.1.216
+    - 192.168.0.52

@@ -20,19 +20,28 @@ spec:
               mountPath: /var/lib/mysql
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: CNiko4zb
+              valueFrom:
+                secretKeyRef:
+                  name: ghostdbsecrets
+                  key: MYSQL_PASSWORD
             - name: MYSQL_USER
               value: alex
             - name: MYSQL_PASSWORD
-              value: CNiko4zb
+              valueFrom:
+                secretKeyRef:
+                  name: ghostdbsecrets
+                  key: MYSQL_PASSWORD
             - name: MYSQL_DATABASE
-              value: ghostdb
+              valueFrom:
+                secretKeyRef:
+                  name: ghostdbsecrets
+                  key: MYSQL_DB
           ports:
             - containerPort: 3306
       volumes:
         - name: mysql-data
           persistentVolumeClaim:
-            claimName: cse-mysql-data
+            claimName: mysql-data
 ---
 apiVersion: v1
 kind: Service
