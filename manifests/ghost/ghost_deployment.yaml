@@ -46,9 +46,6 @@ spec:
             - name: url
               value: "https://alexbissessur.dev"
 
-      nodeSelector:
-        storage: "false"
-
       volumes:
         - name: ghost-data
           persistentVolumeClaim:
