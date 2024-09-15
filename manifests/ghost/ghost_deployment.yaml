@@ -25,7 +25,7 @@ spec:
             - name: database__client
               value: mysql
             - name: database__connection__host
-              value: "mysql-service"
+              value: mysql-service
             - name: database__connection__user
               valueFrom:
                 secretKeyRef:
