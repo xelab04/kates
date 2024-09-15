@@ -1,11 +1,9 @@
 ---
-
 - name: InstallK3sInitMaster
   hosts: all
   gather_facts: true
 
   tasks:
-
     - name: Install packages
       become: true
       zypper:
@@ -17,3 +15,10 @@
         #- blkid
         #- lsblk
         #- findmnt
+
+    - name: Start and Enable iscsi
+      become: true
+      systemd:
+        name: "iscsid"
+        state: started
+        enabled: true
