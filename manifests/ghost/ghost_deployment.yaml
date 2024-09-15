@@ -58,7 +58,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: cse-ghost-service
+  name: ghost-svc
   namespace: ghost-cse
 spec:
   type: LoadBalancer
