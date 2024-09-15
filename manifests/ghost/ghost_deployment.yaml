@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: ghost-deployment
 spec:
+  strategy:
+    type: Recreate
   replicas: 1
   selector:
     matchLabels:
@@ -37,10 +39,7 @@ spec:
                   name: ghostdbsecrets
                   key: MYSQL_PASSWORD
             - name: database__connection__database
-              valueFrom:
-                secretKeyRef:
-                  name: ghostdbsecrets
-                  key: MYSQL_DB
+              value: "ghostdb"
             - name: database__connection__port
               value: "3306"
             - name: url

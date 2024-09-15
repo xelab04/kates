@@ -7,6 +7,8 @@ spec:
   selector:
     matchLabels:
       app: mysql
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
@@ -32,10 +34,7 @@ spec:
                   name: ghostdbsecrets
                   key: MYSQL_PASSWORD
             - name: MYSQL_DATABASE
-              valueFrom:
-                secretKeyRef:
-                  name: ghostdbsecrets
-                  key: MYSQL_DB
+              value: ghostdb
           ports:
             - containerPort: 3306
       volumes:
