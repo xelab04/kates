@@ -12,7 +12,7 @@ spec:
   selector:
     matchLabels:
       app: docker-registry
-      
+
   template:
     metadata:
       creationTimestamp: null
@@ -50,41 +50,3 @@ spec:
         - name: docker-auth-pvc
           persistentVolumeClaim:
             claimName: docker-auth-pvc
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: docker-reg-svc
-spec:
-  type: LoadBalancer
-  selector:
-    app: docker-registry
-  ports:
-    - protocol: TCP
-      port: 5000
-      targetPort: 5000
-
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: docker-reg-pvc
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 12Gi
-
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: docker-auth-pvc
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
