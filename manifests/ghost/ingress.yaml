@@ -5,8 +5,8 @@ metadata:
     cert-manager.io/cluster-issuer: issuer
     kubernetes.io/ingress.class: traefik
   labels:
-    app.kubernetes.io/instance: ghost-ingress
-  name: ghost-ingress
+    app.kubernetes.io/instance: tls-ghost-ingress
+  name: tls-ghost-ingress
 spec:
   rules:
     - host: alexbissessur.dev
