@@ -4,7 +4,12 @@ metadata:
   name: cloudnativemu-ingress
   annotations:
     kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: issuer
 spec:
+  tls:
+    - hosts:
+        - cnmu.alexbissessur.dev
+      secretName: tls-cnmu-ingress
   rules:
   - host: cnmu.alexbissessur.dev
     http:
