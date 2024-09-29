@@ -16,7 +16,7 @@ spec:
               service:
                 name: ghost-svc
                 port:
-                  number: 2368
+                  number: 80
             path: /
             pathType: Prefix
   tls:
