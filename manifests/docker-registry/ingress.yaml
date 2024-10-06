@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: issuer
+    kubernetes.io/ingress.class: traefik
+  labels:
+    app.kubernetes.io/instance: tls-docker-registry-ingress
+  name: tls-docker-registry-ingress
+spec:
+  rules:
+    - host: registry.alexbissessur.dev
+      http:
+        paths:
+          - backend:
+              service:
+                name: docker-reg-svc
+                port:
+                  number: 5000
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - registry.alexbissessur.dev
+      secretName: tls-docker-registry-ingress

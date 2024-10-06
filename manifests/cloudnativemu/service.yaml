@@ -7,16 +7,9 @@ metadata:
 spec:
   ports:
   - name: laravel
-    nodePort: 30667
     port: 8000
     protocol: TCP
     targetPort: 8000
   selector:
     app: cloudnativemu
-  type: LoadBalancer
 
-status:
-  loadBalancer:
-    ingress:
-    - ip: 192.168.0.55
-      ipMode: VIP
