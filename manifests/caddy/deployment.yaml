@@ -15,6 +15,9 @@ spec:
       containers:
       - name: caddy
         image: caddy:latest
+        ports:
+          - containerPort: 80
+          - containerPort: 443
         volumeMounts:
         - name: caddy-config
           mountPath: /etc/caddy

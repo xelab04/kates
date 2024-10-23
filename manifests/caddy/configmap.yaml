@@ -6,4 +6,9 @@ data:
   Caddyfile: |
     registry.alexbissessur.dev {
       reverse_proxy localhost:5000
+      tls
+    }
+    test.alexbissessur.dev {
+      respond "Test Works"
+      tls
     }
