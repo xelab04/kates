@@ -18,7 +18,7 @@ spec:
         volumeMounts:
         - name: caddy-config
           mountPath: /etc/caddy
-  volumes:
-  - name: caddy-config
-    configMap:
-      name: caddy-configmap
+      volumes:
+        - name: caddy-config
+          configMap:
+            name: caddy-configmap
