@@ -4,6 +4,7 @@ metadata:
   name: docker-reg-svc
 spec:
   type: LoadBalancer
+  loadBalancerIP: 192.168.0.50
   selector:
     app: docker-registry
   ports:

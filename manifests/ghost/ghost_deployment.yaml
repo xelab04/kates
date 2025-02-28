@@ -57,7 +57,8 @@ metadata:
   name: ghost-svc
   namespace: ghost
 spec:
-  type: ClusterIP
+  loadBalancerIP: 192.168.1.56
+  type: LoadBalancer
   selector:
     app: ghost
   ports:

@@ -4,6 +4,7 @@ metadata:
   name: rabbitmq
 spec:
   type: LoadBalancer
+  loadBalancerIP: 192.168.0.59
   ports:
     - name: amqp
       port: 5672

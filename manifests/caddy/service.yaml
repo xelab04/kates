@@ -4,13 +4,14 @@ metadata:
   name: caddy-service
   namespace: caddy
 spec:
+  loadBalancerIP: 192.168.0.54
   selector:
     app: caddy
   ports:
-  - name: http
-    port: 80
-    targetPort: 80
-  - name: https
-    port: 443
-    targetPort: 443
+    - name: http
+      port: 80
+      targetPort: 80
+    - name: https
+      port: 443
+      targetPort: 443
   type: LoadBalancer
