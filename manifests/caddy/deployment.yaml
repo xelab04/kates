@@ -21,7 +21,13 @@ spec:
         volumeMounts:
         - name: caddy-config
           mountPath: /etc/caddy
+        - name: caddy-data
+          mountPath: /data
+
       volumes:
         - name: caddy-config
           configMap:
             name: caddy-configmap
+        - name: caddy-data
+          persistentVolumeClaim:
+            claimName: caddy-data
