@@ -42,6 +42,8 @@ spec:
             value: /auth/registry.password
           - name: REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY
             value: /registry-data
+          - name: REGISTRY_STORAGE_DELETE_ENABLED
+            value: 'true'
 
       volumes:
         - name: docker-reg-pvc
