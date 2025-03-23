@@ -22,8 +22,6 @@ spec:
               name: env-cfm
 
           image: registry.alexbissessur.dev/docker-registry-browser:1.0
-          imagePullSecrets:
-            - name: regcred
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 3
@@ -39,5 +37,7 @@ spec:
             - containerPort: 8080
               name: http
               protocol: TCP
+      imagePullSecrets:
+        - name: regcred
       terminationGracePeriodSeconds: 30
 status:
