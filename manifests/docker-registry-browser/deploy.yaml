@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: docker-registry-browser
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: docker-browser
+      app.kubernetes.io/name: docker-registry-browser
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: docker-browser
+        app.kubernetes.io/name: docker-registry-browser
+    spec:
+      containers:
+        - envFrom:
+          - secretRef:
+              name: env-secret
+          - configMapRef:
+              name: env-cfm
+
+          image: registry.alexbissessur.dev/docker-registry-browser:1.0
+          imagePullSecrets:
+            - name: regcred
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /ping
+              port: http
+              scheme: HTTP
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: docker-registry-browser
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+      terminationGracePeriodSeconds: 30
+status:
