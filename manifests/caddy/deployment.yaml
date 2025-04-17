@@ -12,6 +12,8 @@ spec:
       labels:
         app: caddy
     spec:
+      strategy:
+        type: Recreate
       containers:
       - name: caddy
         image: caddy:latest
