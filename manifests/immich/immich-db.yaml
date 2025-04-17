@@ -29,4 +29,4 @@ spec:
         - CREATE EXTENSION IF NOT EXISTS "earthdistance" CASCADE;
 
   storage:
-    size: 2Gi
+    size: 5Gi
