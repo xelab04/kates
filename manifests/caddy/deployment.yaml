@@ -25,6 +25,8 @@ spec:
           mountPath: /etc/caddy
         - name: caddy-data
           mountPath: /data
+        - name: caddy-srv
+          mountPath: /srv
 
       volumes:
         - name: caddy-config
@@ -33,3 +35,6 @@ spec:
         - name: caddy-data
           persistentVolumeClaim:
             claimName: caddy-data
+        - name: caddy-srv
+          persistentVolumeClaim:
+            claimName: caddy-srv
