@@ -19,12 +19,17 @@ spec:
       containers:
         - image: alexb04/cloudnativemu
           name: cloudnativemu
-          
+
           ports:
           - containerPort: 8000
 
           env:
             - name: URL
               value: 0.0.0.0
+
+          resources:
+            requests:
+              cpu: 5m
+              memory: 200Mi
 
       restartPolicy: Always

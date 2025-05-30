@@ -22,7 +22,10 @@ spec:
           volumeMounts:
             - name: ghost-data
               mountPath: /var/lib/ghost/content
-
+          resources:
+            requests:
+              cpu: 100m
+              memory: 512Mi
           env:
             - name: database__client
               value: mysql

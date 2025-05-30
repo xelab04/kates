@@ -27,6 +27,10 @@ spec:
           mountPath: /data
         - name: caddy-srv
           mountPath: /srv
+        resources:
+          requests:
+            cpu: 50m
+            memory: 50Mi
 
       volumes:
         - name: caddy-config

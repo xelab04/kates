@@ -1,0 +1,62 @@
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: pihole-dns
+#   namespace: pihole
+# spec:
+#   type: NodePort
+#   # externalTrafficPolicy: Cluster
+#   selector:
+#     app: pihole
+#   ports:
+#     - name: dns-udp
+#       port: 53
+#       protocol: UDP
+#       targetPort: dns-udp
+#     - name: dns-tcp
+#       port: 53
+#       protocol: TCP
+#       targetPort: dns-tcp
+
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: pihole-web
+#   namespace: pihole
+# spec:
+#   ports:
+#     - name: http
+#       port: 80
+#       protocol: TCP
+#       targetPort: 80
+#   selector:
+#     app: pihole
+#   type: NodePort
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: pihole
+  namespace: pihole
+  annotations:
+    metallb.universe.tf/allow-shared-ip: pihole
+spec:
+  type: LoadBalancer
+  externalTrafficPolicy: Local
+  selector:
+    app: pihole
+  ports:
+    - name: dns-udp
+      port: 53
+      protocol: UDP
+      targetPort: dns-udp
+    - name: dns-tcp
+      port: 53
+      protocol: TCP
+      targetPort: dns-tcp
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: pihole-http

@@ -35,4 +35,7 @@ spec:
       - name: forgejo-data
         persistentVolumeClaim:
           claimName: forgejo-pvc
-
+      resources:
+        requests:
+          cpu: 100m
+          memory: 250Mi

@@ -1,0 +1,90 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: pihole
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pihole
+  namespace: pihole
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+
+---
+# apiVersion: helm.cattle.io/v1
+# kind: HelmChartConfig
+# metadata:
+#   name: traefik
+#   namespace: kube-system
+# spec:
+#   valuesContent: |-
+#     additionalArguments:
+#     - "--entryPoints.dnsudp.address=:53/udp"
+#     - "--providers.kubernetesingress.ingressclass=traefik"
+#     globalArguments:
+#     - "--serversTransport.insecureSkipVerify=true"
+#     - "--api.insecure=true"
+#     ports:
+#       dnsudp:
+#         port: 53
+#         exposedPort: 53
+#         protocol: UDP
+#     entryPoints:
+#       dnsudp:
+#         address: ":53/udp"
+# ---
+# apiVersion: traefik.io/v1alpha1
+# kind: IngressRouteUDP
+# metadata:
+#   name: udp-pihole
+#   namespace: pihole
+# spec:
+#   entryPoints:
+#     - dnsudp
+#   routes:
+#     - services:
+#       - name: pihole-dns
+#         port: 53
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: pihole
+  name: pihole
+  namespace: pihole
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pihole
+  template:
+    metadata:
+      labels:
+        app: pihole
+    spec:
+      containers:
+      - image: pihole/pihole:latest
+        name: pihole
+        ports:
+        - containerPort: 80
+          name: pihole-http
+          protocol: TCP
+        - containerPort: 53
+          name: dns-tcp
+          protocol: TCP
+        - containerPort: 53
+          name: dns-udp
+          protocol: UDP
+        env:
+        - name: FTLCONF_webserver_api_password
+          value: #########
+        - name: WEBTHEME
+          value: default-dark
