@@ -18,6 +18,13 @@ spec:
       labels:
         app: stump
     spec:
+      initContainers:
+      - name: fix-perms
+        image: busybox
+        command: ["sh", "-c", "chown -R 1000:1000 /config"]
+        volumeMounts:
+        - name: stump-cfg
+          mountPath: /config
       containers:
       - image: aaronleopold/stump:latest
         name: stump
