@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: stump
+  name: stump
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stump
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: stump
+    spec:
+      containers:
+      - image: aaronleopold/stump:latest
+        name: stump
+        ports:
+        - containerPort: 10801
+        env:
+        - name: STUMP_ENABLE_UPLOAD
+          value: true
+        resources: {}
+        volumeMounts:
+        - name: stump-cfg
+          mountPath: /config
+        - name: stump-media
+          mountPath: /data
+
+      volumes:
+      - name: stump-cfg
+        persistentVolumeClaim:
+          claimName: stump-cfg
+      - name: stump-media
+        persistentVolumeClaim:
+          claimName: stump-media
+status: {}
