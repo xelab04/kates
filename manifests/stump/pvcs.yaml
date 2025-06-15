@@ -4,7 +4,7 @@ metadata:
   name: stump-cfg
 spec:
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   resources:
     requests:
       storage: 500Mi

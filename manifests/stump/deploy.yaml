@@ -10,7 +10,8 @@ spec:
   selector:
     matchLabels:
       app: stump
-  strategy: {}
+  strategy:
+    type: Recreate
   template:
     metadata:
       creationTimestamp: null
