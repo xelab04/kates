@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: debug
+  name: debug
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: debug
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: debug
+    spec:
+      containers:
+      - image: ubuntu:latest
+        name: ubuntu
+        command: ["/bin/bash", "-c", "sleep 3600"]
+        resources: {}
+        volumeMounts:
+        - name: config-volume
+          mountPath: /config
+      volumes:
+      - name: config-volume
+        persistentVolumeClaim:
+          claimName: stump-cfg
+status: {}

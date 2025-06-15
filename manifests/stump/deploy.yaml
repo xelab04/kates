@@ -26,6 +26,8 @@ spec:
         env:
         - name: STUMP_ENABLE_UPLOAD
           value: "true"
+        - name: STUMP_CONFIG_DIR
+          value: "/config"
         - name: PUID
           value: "1000"
         - name: PGID
