@@ -24,7 +24,7 @@ spec:
         - containerPort: 10801
         env:
         - name: STUMP_ENABLE_UPLOAD
-          value: true
+          value: "true"
         resources: {}
         volumeMounts:
         - name: stump-cfg
