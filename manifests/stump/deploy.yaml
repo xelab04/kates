@@ -25,6 +25,10 @@ spec:
         env:
         - name: STUMP_ENABLE_UPLOAD
           value: "true"
+        - name: PUID
+          value: "1000"
+        - name: PGID
+          value: "1000"
         resources: {}
         volumeMounts:
         - name: stump-cfg
