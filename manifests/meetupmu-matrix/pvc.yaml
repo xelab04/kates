@@ -5,7 +5,8 @@ metadata:
   name: conduit-database-pvc
 
 spec:
-  accessMode: ReadWriteOnce
+  accessModes:
+    - ReadWriteOnce
   storageClassName: longhorn
   resources:
     requests:
