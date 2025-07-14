@@ -49,5 +49,4 @@ spec:
         persistentVolumeClaim:
           claimName: conduit-database-pvc
 
-        resources: {}
-status: {}
+        # resources: {}
