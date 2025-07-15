@@ -13,6 +13,5 @@ data:
     port = 6167
     # Registration settings
     allow_registration = true
-    registration_token = "some-secret"               # CHANGEME
-    jwt_secret = "deadb33fc4f3c4f3deadb33fc4f3c4f3"  # CHANGEME: openssl rand -hex 16
+    allow_federation = true
     allow_check_for_updates = false
