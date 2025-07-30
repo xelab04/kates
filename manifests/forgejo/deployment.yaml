@@ -30,12 +30,12 @@ spec:
         volumeMounts:
         - name: forgejo-data
           mountPath: /data
+        resources:
+          requests:
+            cpu: 100m
+            memory: 250Mi
       restartPolicy: Always
       volumes:
       - name: forgejo-data
         persistentVolumeClaim:
           claimName: forgejo-pvc
-      resources:
-        requests:
-          cpu: 100m
-          memory: 250Mi
