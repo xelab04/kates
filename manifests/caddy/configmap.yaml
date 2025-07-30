@@ -1,14 +1,92 @@
 apiVersion: v1
+data:
+  Caddyfile: |
+    (handle_server_errors) {
+      handle_errors {
+        root * /srv
+        @5xx expression `{http.error.status_code} >= 500`
+        handle @5xx {
+          redir http://sorry.alexbissessur.dev 302
+        }
+      }
+    }
+
+    sorry.alexbissessur.dev {
+      @root_path path /
+      rewrite @root_path /error.html
+      file_server
+      root * /srv
+    }
+
+    alexbissessur.dev {
+      reverse_proxy ghost-svc.ghost.svc.cluster.local
+      tls alexbissessur@gmail.com
+    }
+    files.alexbissessur.dev {
+      root * /srv/files
+      file_server
+    }
+    dropbox.alexbissessur.dev {
+      reverse_proxy alexdropbox.imageshare.svc.cluster.local:80
+      tls alexbissessur@gmail.com
+    }
+    git.alexbissessur.dev {
+      reverse_proxy 192.168.0.55:80
+      tls alexbissessur@gmail.com
+      basicauth {
+        alex
+      }
+    }
+    stump.alexbissessur.dev {
+      reverse_proxy stump.stump.svc.cluster.local
+      tls alexbissessur@gmail.com
+    }
+    registry.alexbissessur.dev {
+      reverse_proxy docker-reg-svc.default.svc.cluster.local:5000
+      tls alexbissessur@gmail.com
+    }
+    immich.alexbissessur.dev {
+      reverse_proxy immich-server.immich.svc.cluster.local:2283
+      tls alexbissessur@gmail.com
+    }
+    http://argocd.alexbissessur.dev:80 {
+      reverse_proxy 192.168.0.58
+    }
+    linkedin.alexbissessur.dev {
+      redir https://alexbissessur.dev/timeline
+    }
+    cnmu.alexbissessur.dev {
+      reverse_proxy 192.168.0.63:8000
+      tls alexbissessur@gmail.com
+    }
+    http://registrybrowser.alexbissessur.dev {
+      reverse_proxy docker-registry-browser-svc.docker-registry-browser.svc.cluster.local
+    }
+
+    machine.dev {
+      reverse_proxy machine-service.default.svc.cluster.local:80
+      tls alexbissessur@gmail.com
+    }
+
+    meetup.mu {
+      reverse_proxy meetups-svc.meetup.svc.cluster.local:8000 {
+        header_up X-Forwarded-Proto {scheme}
+        header_up X-Forwarded-Host {host}
+        header_up Host {host}
+      }
+      tls alexbissessur@gmail.com
+    }
+    matrix.meetup.mu {
+      reverse_proxy matrix-conduit.matrix-meetup.svc.cluster.local:6167
+      tls alexbissessur@gmail.com
+    }
+
+    touniminuit.cloudnativemauritius.com {
+      reverse_proxy touni-minuit.touni-minuit.svc.cluster.local
+      tls alexbissessur@gmail.com
+    }
+
 kind: ConfigMap
 metadata:
   name: caddy-configmap
-data:
-  Caddyfile: |
-    registry.alexbissessur.dev {
-      reverse_proxy localhost:5000
-      tls
-    }
-    test.alexbissessur.dev {
-      respond "Test Works"
-      tls
-    }
+  namespace: caddy
