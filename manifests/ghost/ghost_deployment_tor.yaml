@@ -8,11 +8,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ghost
+      app: ghost-tor
   template:
     metadata:
       labels:
-        app: ghost
+        app: ghost-tor
     spec:
       containers:
         - name: ghost
@@ -46,7 +46,7 @@ spec:
             - name: database__connection__port
               value: "3306"
             - name: url
-              value: "https://alexbissessur.dev"
+              value: "http://alexbissessur.dev"
 
       volumes:
         - name: ghost-data
@@ -63,7 +63,7 @@ spec:
   loadBalancerIP: 192.168.0.56
   type: LoadBalancer
   selector:
-    app: ghost
+    app: ghost-tor
   ports:
     - protocol: TCP
       port: 80
