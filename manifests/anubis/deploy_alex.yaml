@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: anubis-alex
+  name: anubis-alex
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: anubis-alex
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: anubis-alex
+    spec:
+      containers:
+      - image: ghcr.io/techarohq/anubis:latest
+        name: anubis
+        ports:
+        - containerPort: 3000
+        env:
+          - name: BIND
+            value: "0.0.0.0:3000"
+          - name: TARGET
+            value: http://ghost-svc.ghost.svc.cluster.local:80
+        resources: {}
+status: {}
