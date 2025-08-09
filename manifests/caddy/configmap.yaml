@@ -19,7 +19,10 @@ data:
     }
 
     alexbissessur.dev {
-      reverse_proxy ghost-svc.ghost.svc.cluster.local
+      reverse_proxy anubis-alex.anubis.svc.cluster.local:3000 {
+        header_up X-Real-Ip {remote_host}
+        header_up X-Http-Version  {http.request.proto}
+      }
       tls alexbissessur@gmail.com
     }
     files.alexbissessur.dev {
