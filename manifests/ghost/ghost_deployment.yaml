@@ -46,7 +46,7 @@ spec:
             - name: database__connection__port
               value: "3306"
             - name: url
-              value: "http://alexbissessur.dev"
+              value: "https://alexbissessur.dev"
 
       volumes:
         - name: ghost-data
