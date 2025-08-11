@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: ghost
-          image: ghost:5.71.0
+          image: ghost:5.130.3
           ports:
             - containerPort: 2368
           volumeMounts:
