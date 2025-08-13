@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: forgejo
-        image: codeberg.org/forgejo/forgejo:10
+        image: codeberg.org/forgejo/forgejo:12
         ports:
         - containerPort: 3000 # HTTP
         - containerPort: 22   # SSH
