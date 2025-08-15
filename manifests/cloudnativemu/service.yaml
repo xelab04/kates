@@ -5,6 +5,8 @@ metadata:
     app: cloudnativemu
   name: cloudnativemu
 spec:
+  type:
+    ClusterIP
   ports:
   - name: laravel
     port: 8000
@@ -12,4 +14,3 @@ spec:
     targetPort: 8000
   selector:
     app: cloudnativemu
-
