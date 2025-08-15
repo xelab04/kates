@@ -52,18 +52,3 @@ spec:
         - name: ghost-data
           persistentVolumeClaim:
             claimName: ghost-data
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: ghost-svc
-  namespace: ghost
-spec:
-  type: ClusterIP
-  selector:
-    app: ghost
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 2368
