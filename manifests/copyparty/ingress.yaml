@@ -4,7 +4,7 @@ metadata:
   name: copyparty
 spec:
   rules:
-  - host: copyparty.alex.dev
+  - host: copyparty.alexbissessur.dev
     http:
       paths:
       - path: /
