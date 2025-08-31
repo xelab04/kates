@@ -5,7 +5,7 @@ metadata:
 spec:
   accessModes:
     # covering my ass here
-    - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
       storage: 500Mi
@@ -19,7 +19,7 @@ metadata:
 spec:
   accessModes:
     # and here
-    - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
       storage: 10Gi
