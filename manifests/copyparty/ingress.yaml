@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: copyparty
+spec:
+  rules:
+  - host: copyparty.alex.dev
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: copyparty
+            port:
+              number: 80
