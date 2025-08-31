@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: copyparty
+  name: copyparty
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: copyparty
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: copyparty
+    spec:
+      containers:
+      - image: copyparty/ac
+        name: ac
+        ports:
+        - containerPort: 3923
+        resources: {}
+
+        volumeMounts:
+          - mountPath: /w
+            name: data
+          - mountPath: /cfg/
+            name: config
+          - mountPath: /cfg/copyparty.d
+            name: configdir
+
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: data-pvc
+        - name: configdir
+          persistentVolumeClaim:
+            claimName: config-pvc
+        - name: config
+          configMap:
+            name: config
+
+
+status: {}
