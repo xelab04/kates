@@ -13,6 +13,7 @@ data:
       .
       accs:
         r: *
+        rw: alex
 
     # so i can have my own configs in LH rather than in git
     % copyparty.d
