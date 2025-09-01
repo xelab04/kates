@@ -9,11 +9,11 @@ data:
       z, qr  # and zeroconf and qrcode (you can comma-separate arguments)
 
     # create volumes:
-    [/]
-      .
-      accs:
-        r: *
-        rw: alex
+    # [/]
+    #   .
+    #   accs:
+    #     r: *
+    #     rw: alex
 
     # so i can have my own configs in LH rather than in git
     % ./copyparty.d
