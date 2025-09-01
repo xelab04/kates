@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pg-dump-helper
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pg-dump-helper
+  template:
+    metadata:
+      labels:
+        app: pg-dump-helper
+    spec:
+      securityContext:
+        fsGroup: 26
+
+      initContainers:
+      - name: fix-perms
+        image: busybox
+        command: ["sh", "-c", "chmod 700 /var/lib/postgresql/data/pgdata"]
+        volumeMounts:
+        - name: pgdata
+          mountPath: /var/lib/postgresql/data
+
+      containers:
+      - name: client
+        # image: postgres:16
+        image: ghcr.io/tensorchord/cloudnative-pgvecto.rs:16.5-v0.3.0@sha256:be3f025d79aa1b747817f478e07e71be43236e14d00d8a9eb3914146245035ba
+        command: ["sleep", "infinity"]
+        # run this
+        # postgres -D /var/lib/postgresql/data/pgdata/ -c shared_preload_libraries="vectors.so" -c listen_addresses='127.0.0.1' -c ssl=off -c log_destination=stderr -c logging_collector=off -c unix_socket_directories=/tmp
+        # then run dump
+        # pg_dump -U postgres -d immich -h localhost -f /var/lib/postgresql/data/pgdata/immich.dump
+        #
+        # copy the dump to the new cnpg cluster
+        # delete everything
+        # DROP SCHEMA public CASCADE;
+        # CREATE SCHEMA public;
+        #
+        # then import dump
+        # psql -U postgres -d immich -h localhost -f /var/lib/postgresql/data/pgdata/immich.dump
+
+        securityContext:
+          runAsUser: 999
+          runAsGroup: 26
+
+        volumeMounts:
+        - name: pgdata
+          mountPath: /var/lib/postgresql/data
+      volumes:
+      - name: pgdata
+        persistentVolumeClaim:
+          claimName: immich-recovery
