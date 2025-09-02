@@ -8,7 +8,7 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: 500Mi
+      storage: 2Gi
 
 ---
 
@@ -17,9 +17,10 @@ kind: PersistentVolumeClaim
 metadata:
   name: data-pvc
 spec:
+  storageClassName: longhorn-surveillance
   accessModes:
     # and here
     - ReadWriteMany
   resources:
     requests:
-      storage: 10Gi
+      storage: 250Gi
