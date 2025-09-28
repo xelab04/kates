@@ -1,0 +1,12 @@
+metadata:
+  name: tor-endpoint
+  namespace: argocd
+spec:
+  destination:
+    namespace: tor-endpoint
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: kubernetes/
+    repoURL: https://github.com/xelab04/tor-entrypoint.git
+    targetRevision: HEAD

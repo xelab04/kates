@@ -1,0 +1,14 @@
+metadata:
+  name: meetups
+  namespace: argocd
+spec:
+  destination:
+    namespace: meetup
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: kubernetes/
+    repoURL: https://github.com/xelab04/meetups.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}

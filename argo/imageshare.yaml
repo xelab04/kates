@@ -1,0 +1,15 @@
+metadata:
+  name: imageshare
+  namespace: argocd
+spec:
+  destination:
+    namespace: imageshare
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: WeddingShare/Kubernetes
+    repoURL: https://github.com/xelab04/ImageShare.git
+    targetRevision: HEAD
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true

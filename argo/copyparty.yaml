@@ -1,0 +1,17 @@
+metadata:
+  name: copyparty
+  namespace: argocd
+spec:
+  destination:
+    namespace: copyparty
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: manifests/copyparty
+    repoURL: https://github.com/xelab04/kates.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      enabled: true
+    syncOptions:
+    - CreateNamespace=true

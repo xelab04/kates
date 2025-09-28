@@ -1,0 +1,15 @@
+metadata:
+  name: rabbitmq
+  namespace: argocd
+spec:
+  destination:
+    namespace: rabbitmq
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: manifests/rabbitmq
+    repoURL: https://github.com/xelab04/kates.git
+    targetRevision: HEAD
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true

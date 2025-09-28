@@ -1,0 +1,15 @@
+metadata:
+  name: anubis
+  namespace: argocd
+spec:
+  destination:
+    namespace: anubis
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    directory:
+      exclude: '{deploy_machine.yaml,svc_machine.yaml}'
+      jsonnet: {}
+    path: manifests/anubis
+    repoURL: https://github.com/xelab04/kates.git
+    targetRevision: HEAD

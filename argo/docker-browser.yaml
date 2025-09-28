@@ -1,0 +1,15 @@
+metadata:
+  name: docker-browser
+  namespace: argocd
+spec:
+  destination:
+    namespace: docker-browser
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    chart: docker-registry-browser
+    repoURL: https://klausmeyer.github.io/helm-charts/
+    targetRevision: 0.2.0
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true

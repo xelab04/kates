@@ -1,0 +1,12 @@
+metadata:
+  name: matrix-meetup
+  namespace: argocd
+spec:
+  destination:
+    namespace: matrix-meetup
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: manifests/meetupmu-matrix
+    repoURL: https://github.com/xelab04/kates.git
+    targetRevision: HEAD

@@ -1,0 +1,19 @@
+metadata:
+  name: cert-manager
+  namespace: argocd
+spec:
+  destination:
+    namespace: cert-manager
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    chart: cert-manager
+    helm:
+      parameters:
+      - name: crds.enabled
+        value: "true"
+    repoURL: https://charts.jetstack.io
+    targetRevision: v1.16.1
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true

@@ -1,0 +1,14 @@
+metadata:
+  name: docker-registry
+  namespace: argocd
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: manifests/docker-registry
+    repoURL: https://github.com/xelab04/kates.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}

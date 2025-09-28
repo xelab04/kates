@@ -1,0 +1,14 @@
+metadata:
+  name: cloudnativemu
+  namespace: argocd
+spec:
+  destination:
+    namespace: cloudnativemu
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: kubernetes/
+    repoURL: https://github.com/cloud-native-mauritius/cloudnativemauritius.com.git
+    targetRevision: f-kubernetes
+  syncPolicy:
+    automated: {}

@@ -1,0 +1,15 @@
+metadata:
+  name: docker-registry-browser
+  namespace: argocd
+spec:
+  destination:
+    namespace: docker-registry-browser
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: manifests/docker-registry-browser/
+    repoURL: https://github.com/xelab04/kates.git
+    targetRevision: HEAD
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true

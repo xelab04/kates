@@ -1,0 +1,12 @@
+metadata:
+  name: forgejo
+  namespace: argocd
+spec:
+  destination:
+    namespace: forgejo
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: manifests/forgejo
+    repoURL: https://github.com/xelab04/kates.git
+    targetRevision: HEAD

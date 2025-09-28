@@ -1,0 +1,12 @@
+metadata:
+  name: open-webui
+  namespace: argocd
+spec:
+  destination:
+    namespace: open-webui
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    chart: open-webui
+    repoURL: https://helm.openwebui.com/
+    targetRevision: 7.0.1
