@@ -1,3 +1,5 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
   name: ollama
   namespace: argocd
@@ -6,23 +8,15 @@ spec:
     namespace: ollama
     server: https://kubernetes.default.svc
   project: default
-  source:
-    chart: ollama
-    helm:
-      parameters:
-      - name: persistentVolume.size
-        value: 5Gi
-      values: |-
-        ollama:
-          models:
-            pull:
-              - "gemma3:1b"
 
-        resources:
-          requests:
-            memory: "1700Mi"
-    repoURL: https://otwld.github.io/ollama-helm/
-    targetRevision: 1.11.0
+  source:
+    repoURL: https://github.com/xelab04/kates.git
+    targetRevision: main
+    path: manifests/ollama
+    helm:
+      valueFiles:
+        - values.yaml
+
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
