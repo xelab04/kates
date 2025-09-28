@@ -1,0 +1,11 @@
+ollama:
+  models:
+    pull:
+      - "gemma3:1b"
+
+resources:
+  requests:
+    memory: "1700Mi"
+
+persistentVolume:
+  size: 5Gi
