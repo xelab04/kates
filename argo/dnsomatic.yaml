@@ -1,3 +1,5 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
   name: dnsomatic
   namespace: argocd
@@ -10,7 +12,7 @@ spec:
     directory:
       exclude: secrets.yaml
       jsonnet: {}
-    path: manifests/DNSoMatic
+    path: manifests/dnsomatic
     repoURL: https://github.com/xelab04/kates.git
     targetRevision: HEAD
   syncPolicy:

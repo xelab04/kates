@@ -1,3 +1,5 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
   name: matrix-meetup
   namespace: argocd
@@ -7,6 +9,6 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: manifests/meetupmu-matrix
+    path: manifests/matrix-meetup
     repoURL: https://github.com/xelab04/kates.git
     targetRevision: HEAD
