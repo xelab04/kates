@@ -1,8 +1,8 @@
 wireguard:
   clients:
-    # desktop
     - PublicKey: y/BWw15sGBI5trUJlbRAozs9ReHX5PvnqTXOv8TOjAA=
-      AllowedIPs: 0.0.0.0/0
+      AllowedIPs: 192.168.0.1/24
+      FriendlyName: ArchDesktop
 
 service:
   loadBalancerIP: "192.168.0.65"
