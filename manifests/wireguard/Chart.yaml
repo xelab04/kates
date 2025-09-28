@@ -1,0 +1,7 @@
+apiVersion: v2
+name: wireguard
+version: 0.30.0
+dependencies:
+  - name: wireguard
+    version: 0.30.0
+    repository: https://bryopsida.github.io/wireguard-chart
