@@ -7,4 +7,13 @@ wireguard:
 service:
   loadBalancerIP: "192.168.0.65"
 
-affinity: {}
+affinity:
+  podAntiAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchLabels:
+              app: wireguard-wireguard
+              role: vpn
+          topologyKey: kubernetes.io/hostname
