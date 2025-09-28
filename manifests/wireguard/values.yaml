@@ -10,8 +10,10 @@ service:
 affinity:
   podAntiAffinity:
     preferredDuringSchedulingIgnoredDuringExecution:
-      - labelSelector:
-          matchLabels:
-            app: wireguard-wireguard
-            role: vpn
-        topologyKey: kubernetes.io/hostname
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchLabels:
+              app: wireguard-wireguard
+              role: vpn
+          topologyKey: kubernetes.io/hostname
