@@ -1,7 +1,7 @@
 wireguard:
   clients:
     - PublicKey: y/BWw15sGBI5trUJlbRAozs9ReHX5PvnqTXOv8TOjAA=
-      AllowedIPs: 0.0.0.0/0
+      AllowedIPs: 10.34.0.0/24
       FriendlyName: ArchDesktop
 
 service:
