@@ -63,11 +63,11 @@ postgresql:
           CREATE EXTENSION earthdistance;
           CREATE EXTENSION vectors;
 
-redis:
-  enabled: false
-  architecture: standalone
-  auth:
-    enabled: false
+# redis:
+#   enabled: false
+#   architecture: standalone
+#   auth:
+#     enabled: false
 
 valkey:
   enabled: true
@@ -82,7 +82,7 @@ valkey:
       # Optional: Set this to pvc to keep job queues persistent
       type: pvc
       accessMode: ReadWriteOnce
-      # storageClass: longhorn
+      # storageClass: your-class
 
 # Immich components
 
