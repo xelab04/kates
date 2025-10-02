@@ -89,8 +89,8 @@ spec:
       securityContext:
         fsGroup: 1001
         fsGroupChangePolicy: Always
-      serviceAccount: immich-redis-master
-      serviceAccountName: immich-redis-master
+      # serviceAccount: immich-redis-master
+      # serviceAccountName: immich-redis-master
       terminationGracePeriodSeconds: 30
       volumes:
       - emptyDir: {}
