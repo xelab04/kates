@@ -5,7 +5,8 @@
 # These entries are shared between all the Immich components
 
 env:
-  REDIS_HOSTNAME: '{{ printf "%s-valkey" .Release.Name }}'
+  # REDIS_HOSTNAME: '{{ printf "%s-valkey" .Release.Name }}'
+  REDIS_HOSTNAME: 'immich-redis-master'
   DB_HOSTNAME: "immich-postgres-rw"
   DB_USERNAME: "{{ .Values.postgresql.global.postgresql.auth.username }}"
   DB_DATABASE_NAME: "{{ .Values.postgresql.global.postgresql.auth.database }}"
