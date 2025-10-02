@@ -25,12 +25,12 @@ spec:
     spec:
       automountServiceAccountToken: false
       containers:
-      # args:
-      #   - redis-server
-      #   - /etc/redis/redis.conf
-      #   command:
-      #   - /bin/bash
-      - env:
+      - args:
+        - redis-server
+        - /etc/redis/redis.conf
+        command:
+        - /bin/bash
+        env:
         - name: REDIS_REPLICATION_MODE
           value: master
         - name: ALLOW_EMPTY_PASSWORD
