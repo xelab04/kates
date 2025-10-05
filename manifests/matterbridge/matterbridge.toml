@@ -1,0 +1,230 @@
+###################################################################
+#telegram section
+###################################################################
+[telegram]
+[telegram.cnmu]
+Token="Yourtokenhere"
+
+## RELOADABLE SETTINGS
+## Settings below can be reloaded by editing the file
+
+#OPTIONAL (default empty)
+#Supported formats are:
+#"HTML" https://core.telegram.org/bots/api#html-style
+#"Markdown" https://core.telegram.org/bots/api#markdown-style - deprecated, doesn't display links with underscores correctly
+#"MarkdownV2" https://core.telegram.org/bots/api#markdownv2-style
+#"HTMLNick" - only allows HTML for the nick, the message itself will be html-escaped
+MessageFormat="MarkdownV2"
+
+#OPTIONAL (default false)
+#Disables link previews for links in messages
+DisableWebPagePreview=false
+
+#If enabled use the "First Name" as username. If this is empty use the Username
+#If disabled use the "Username" as username. If this is empty use the First Name
+#If all names are empty, username will be "unknown"
+#OPTIONAL (default false)
+UseFirstName=false
+
+#If enabled use the "Full Name" as username. If this is empty use the Username
+#If disabled use the "Username" as username. If this is empty use the First Name and Last Name as Full Name
+#If all names are empty, username will be "unknown"
+#OPTIONAL (default false)
+UseFullName=false
+
+#WARNING! If enabled this will relay GIF/stickers/documents and other attachments as URLs
+#Those URLs will contain your bot-token. This may not be what you want.
+#For now there is no secure way to relay GIF/stickers/documents without seeing your token.
+#OPTIONAL (default false)
+UseInsecureURL=false
+
+#Disable quoted/reply messages
+#OPTIONAL (default false)
+QuoteDisable=false
+
+#Set the max. quoted length if 0 the whole message will be quoted
+#OPTIONAL (default 0)
+QuoteLengthLimit=0
+
+#Format quoted/reply messages
+#OPTIONAL (default "{MESSAGE} (re @{QUOTENICK}: {QUOTEMESSAGE})")
+QuoteFormat="{MESSAGE} (re @{QUOTENICK}: {QUOTEMESSAGE})"
+
+#Convert WebP images to PNG before upload.
+#https://github.com/42wim/matterbridge/issues/398
+#OPTIONAL (default false)
+MediaConvertWebPToPNG=false
+
+#Convert Tgs (Telegram animated sticker) images to PNG before upload.
+#This is useful when your bridge also contains platforms that do not support animated WebP files, like Discord.
+#This requires the external dependency `lottie`, which can be installed like this:
+#`pip install lottie cairosvg`
+#https://github.com/42wim/matterbridge/issues/874
+#MediaConvertTgs="png"
+
+#Disable sending of edits to other bridges
+#OPTIONAL (default false)
+EditDisable=false
+
+#Message to be appended to every edited message
+#OPTIONAL (default empty)
+EditSuffix=" (edited)"
+
+
+
+
+
+
+#Extractnicks is used to for example rewrite messages from other relaybots
+#See https://github.com/42wim/matterbridge/issues/713 and https://github.com/42wim/matterbridge/issues/466
+#some examples:
+#this replaces a message like "Relaybot: <relayeduser> something interesting" to "relayeduser: something interesting"
+#ExtractNicks=[ [ "Relaybot", "<(.*?)>\\s+" ] ]
+
+
+#RemoteNickFormat defines how remote users appear on this bridge
+#See [general] config section for default options
+#
+#WARNING: if you have set MessageFormat="HTML" be sure that this format matches the guidelines
+#on https://core.telegram.org/bots/api#html-style otherwise the message will not go through to
+#telegram! eg <{NICK}> should be &lt;{NICK}&gt;
+RemoteNickFormat="<{NICK}> "
+
+#Enable to show users joins/parts from other bridges
+#Currently works for messages from the following bridges: irc, mattermost, mumble, slack, discord
+#OPTIONAL (default false)
+ShowJoinPart=false
+
+#StripNick only allows alphanumerical nicks. See https://github.com/42wim/matterbridge/issues/285
+#It will strip other characters from the nick
+#OPTIONAL (default false)
+StripNick=false
+
+#Enable to show topic changes from other bridges
+#Only works hiding/show topic changes from slack bridge for now
+#OPTIONAL (default false)
+ShowTopicChange=false
+
+#Opportunistically preserve threaded replies between Telegram groups.
+#This only works if the parent message is still in the cache.
+#Cache is flushed between restarts.
+#OPTIONAL (default false)
+PreserveThreading=false
+
+
+###################################################################
+#matrix section
+###################################################################
+[matrix]
+#You can configure multiple servers "[matrix.name]" or "[matrix.name2]"
+#In this example we use [matrix.neo]
+#REQUIRED
+
+[matrix.neo]
+#Server is your homeserver (eg https://matrix.org)
+#REQUIRED
+Server="https://matrix.meetup.mu"
+
+#Authentication for your bot.
+#You can use either login/password OR mxid/token. The latter will be preferred if found.
+#Use a dedicated user for this and not your own!
+#Messages sent from this user will not be relayed to avoid loops.
+#REQUIRED
+Login="yourlogin"
+Password="yourpass"
+#OR
+MxID="@yourlogin:domain.tld"
+Token="tokenforthebotuser"
+
+#Whether to send the homeserver suffix. eg ":matrix.org" in @username:matrix.org
+#to other bridges, or only send "username".(true only sends username)
+#OPTIONAL (default false)
+NoHomeServerSuffix=true
+
+#Whether to disable sending of HTML content to matrix
+#See https://github.com/42wim/matterbridge/issues/1022
+#OPTIONAL (default false)
+HTMLDisable=false
+
+## RELOADABLE SETTINGS
+## Settings below can be reloaded by editing the file
+
+# UseUserName shows the username instead of the server nickname
+UseUserName=false
+
+# Matrix quotes replies and as of matterbridge 1.24.0 we strip those as this causes
+# issues with bridges support threading and have PreserveThreading enabled.
+# But if you for example use mattermost or discord with webhooks you'll need to enable
+# this (and keep PreserveThreading disabled) if you want something that looks like a reply from matrix.
+# See issues:
+# - https://github.com/42wim/matterbridge/issues/1819
+# - https://github.com/42wim/matterbridge/issues/1780
+KeepQuotedReply=false
+
+#Nicks you want to ignore.
+#Regular expressions supported
+#Messages from those users will not be sent to other bridges.
+#OPTIONAL
+IgnoreNicks="spammer1 spammer2"
+
+#Messages you want to ignore.
+#Messages matching these regexp will be ignored and not sent to other bridges
+#See https://regex-golang.appspot.com/assets/html/index.html for more regex info
+#OPTIONAL (example below ignores messages starting with ~~ or messages containing badword
+IgnoreMessages="^~~ badword"
+
+#messages you want to replace.
+#it replaces outgoing messages from the bridge.
+#so you need to place it by the sending bridge definition.
+#regular expressions supported
+#some examples:
+#this replaces cat => dog and sleep => awake
+#replacemessages=[ ["cat","dog"], ["sleep","awake"] ]
+#this replaces every number with number.  123 => numbernumbernumber
+#replacemessages=[ ["[0-9]","number"] ]
+#optional (default empty)
+ReplaceMessages=[ ["cat","dog"] ]
+
+#nicks you want to replace.
+#see replacemessages for syntax
+#optional (default empty)
+ReplaceNicks=[ ["user--","user"] ]
+
+#Extractnicks is used to for example rewrite messages from other relaybots
+#See https://github.com/42wim/matterbridge/issues/713 and https://github.com/42wim/matterbridge/issues/466
+#some examples:
+#this replaces a message like "Relaybot: <relayeduser> something interesting" to "relayeduser: something interesting"
+#ExtractNicks=[ [ "Relaybot", "<(.*?)>\\s+" ] ]
+#you can use multiple entries for multiplebots
+#this also replaces a message like "otherbot: (relayeduser) something else" to "relayeduser: something else"
+#ExtractNicks=[ [ "Relaybot", "<(.*?)>\\s+" ],[ "otherbot","\\((.*?)\\)\\s+" ]
+#OPTIONAL (default empty)
+ExtractNicks=[ ["otherbot","<(.*?)>\\s+" ] ]
+
+#extra label that can be used in the RemoteNickFormat
+#optional (default empty)
+Label=""
+
+#RemoteNickFormat defines how remote users appear on this bridge
+#See [general] config section for default options
+RemoteNickFormat="<{NICK}> "
+
+#Enable to show users joins/parts from other bridges
+#Currently works for messages from the following bridges: irc, mattermost, mumble, slack, discord
+#OPTIONAL (default false)
+ShowJoinPart=false
+
+#Rename the bot in the current room to the username of the message
+#This will make an additional API request per message and will probably count towards rate limits
+#OPTIONAL (default false)
+SpoofUsername=false
+
+#StripNick only allows alphanumerical nicks. See https://github.com/42wim/matterbridge/issues/285
+#It will strip other characters from the nick
+#OPTIONAL (default false)
+StripNick=false
+
+#Enable to show topic changes from other bridges
+#Only works hiding/show topic changes from slack bridge for now
+#OPTIONAL (default false)
+ShowTopicChange=false

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: matterbridge
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: matterbridge
+  template:
+    metadata:
+      labels:
+        app: matterbridge
+    spec:
+      containers:
+        - name: matterbridge
+          image: 42wim/matterbridge:stable
+          args: ["-conf", "/config/matterbridge.toml"]
+          volumeMounts:
+            - name: config-volume
+              mountPath: /config
+              readOnly: true
+      volumes:
+        - name: config-volume
+          secret:
+            secretName: matterbridge-config
