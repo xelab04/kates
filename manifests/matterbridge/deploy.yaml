@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: matterbridge
-          image: 42wim/matterbridge:stable
+          image: docker.io/alexb04/matterbridge:1.26.2
           args: ["-conf", "/config/matterbridge.toml"]
           volumeMounts:
             - name: config-volume
