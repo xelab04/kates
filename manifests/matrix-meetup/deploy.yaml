@@ -18,7 +18,7 @@ spec:
 
     spec:
       containers:
-      - image: registry.gitlab.com/famedly/conduit/matrix-conduit:v0.9.0
+      - image: registry.gitlab.com/famedly/conduit/matrix-conduit:v0.10.9
         name: matrix-conduit
 
         env:
