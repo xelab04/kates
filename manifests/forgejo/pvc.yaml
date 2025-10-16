@@ -4,7 +4,7 @@ metadata:
   name: forgejo-pvc
 spec:
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   resources:
     requests:
       storage: 15Gi
