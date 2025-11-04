@@ -7,7 +7,7 @@ metadata:
   name: navidrome
 spec:
   ports:
-  - port: 4533
+  - port: 80
     protocol: TCP
     targetPort: 4533
   selector:
