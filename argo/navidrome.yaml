@@ -1,0 +1,14 @@
+metadata:
+  name: navidrome
+  namespace: argocd
+spec:
+  destination:
+    namespace: navidrome
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: manifests/navidrome
+    repoURL: https://github.com/xelab04/kates.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}

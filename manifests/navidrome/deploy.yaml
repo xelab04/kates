@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: navidrome
+  name: navidrome
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: navidrome
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: navidrome
+    spec:
+      containers:
+      - image: deluan/navidrome:0.58.0
+        name: navidrome
+        ports:
+        - containerPort: 4533
+        resources: {}
+        volumeMounts:
+          - name: data
+            mountPath: /data
+          - name: music
+            mountPath: /music
+          - name: alex
+            mountPath: /alex
+          - name: dool
+            mountPath: /dool
+
+    volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: navidrome-data
+      - name: music
+        persistentVolumeClaim:
+          claimName: navidrome-music
+      - name: alex
+        persistentVolumeClaim:
+          claimName: navidrome-alex
+      - name: dool
+        persistentVolumeClaim:
+          claimName: navidrome-dool
+status: {}
