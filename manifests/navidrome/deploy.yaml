@@ -34,16 +34,16 @@ spec:
             mountPath: /dool
 
     volumes:
-      - name: data
+      - name: navidrome-data
         persistentVolumeClaim:
           claimName: navidrome-data
-      - name: music
+      - name: navidrome-music
         persistentVolumeClaim:
           claimName: navidrome-music
-      - name: alex
+      - name: navidrome-alex
         persistentVolumeClaim:
           claimName: navidrome-alex
-      - name: dool
+      - name: navidrome-dool
         persistentVolumeClaim:
           claimName: navidrome-dool
 status: {}
