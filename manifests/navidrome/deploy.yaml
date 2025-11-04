@@ -24,13 +24,13 @@ spec:
         - containerPort: 4533
         resources: {}
         volumeMounts:
-          - name: data
+          - name: navidrome-data
             mountPath: /data
-          - name: music
+          - name: navidrome-music
             mountPath: /music
-          - name: alex
+          - name: navidrome-alex
             mountPath: /alex
-          - name: dool
+          - name: navidrome-dool
             mountPath: /dool
 
     volumes:
