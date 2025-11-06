@@ -71,7 +71,7 @@ postgresql:
 #     enabled: false
 
 valkey:
-  enabled: true
+  enabled: false
   image:
     repository: docker.io/valkey/valkey
     tag: 8.0-alpine
