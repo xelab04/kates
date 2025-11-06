@@ -4,7 +4,7 @@ metadata:
   name: docker-reg-pvc
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: '21474836480'
@@ -16,7 +16,7 @@ metadata:
   name: docker-auth-pvc
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 1Gi
