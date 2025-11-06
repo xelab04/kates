@@ -1,3 +1,8 @@
+database:
+  auth:
+    username: immich
+    database: immich
+    password: immich
 
 controllers:
   main:
@@ -8,10 +13,10 @@ controllers:
         env:
           REDIS_HOSTNAME: 'immich-redis-master'
           DB_HOSTNAME: "immich-postgres-rw"
-          DB_USERNAME: "{{ .Values.postgresql.global.postgresql.auth.username }}"
-          DB_DATABASE_NAME: "{{ .Values.postgresql.global.postgresql.auth.database }}"
+          DB_USERNAME: "{{ .Values.database.auth.username }}"
+          DB_DATABASE_NAME: "{{ .Values.database.auth.database }}"
           # -- You should provide your own secret outside of this helm-chart and use `postgresql.global.postgresql.auth.existingSecret` to provide credentials to the postgresql instance
-          DB_PASSWORD: "{{ .Values.postgresql.global.postgresql.auth.password }}"
+          DB_PASSWORD: "{{ .Values.database.auth.password }}"
           IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
 
 immich:
@@ -35,31 +40,6 @@ immich:
     #   enabled: true
     #   template: "{{y}}/{{y}}-{{MM}}-{{dd}}/{{filename}}"
 
-# Dependencies
-
-# DEPRECATED
-# The postgres subchart is deprecated and will be removed in chart version 0.10.0
-# See https://github.com/immich-app/immich-charts/issues/149 for more detail.
-postgresql:
-  enabled: false
-  image:
-    repository: tensorchord/pgvecto-rs
-    tag: pg14-v0.2.0@sha256:739cdd626151ff1f796dc95a6591b55a714f341c737e27f045019ceabf8e8c52
-  global:
-    postgresql:
-      auth:
-        username: immich
-        database: immich
-        password: immich
-  primary:
-    containerSecurityContext:
-      readOnlyRootFilesystem: false
-    initdb:
-      scripts:
-        create-extensions.sql: |
-          CREATE EXTENSION cube;
-          CREATE EXTENSION earthdistance;
-          CREATE EXTENSION vectors;
 
 # redis:
 #   enabled: false
