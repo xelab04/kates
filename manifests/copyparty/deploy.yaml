@@ -44,7 +44,7 @@ spec:
         - name: config
           configMap:
             name: config
-        - name: navidrome-nfs
+        - name: nfs
           nfs:
             server: nfs-server.nfs-server.svc.cluster.local
             path: /
