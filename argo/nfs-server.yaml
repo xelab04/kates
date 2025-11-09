@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nfs-server
+  namespace: argocd
+spec:
+  destination:
+    namespace: nfs-server
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: manifests/nfs-server
+    repoURL: https://github.com/xelab04/kates.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}

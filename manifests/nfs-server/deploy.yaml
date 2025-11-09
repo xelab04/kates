@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nfs-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nfs-server
+  template:
+    metadata:
+      labels:
+        app: nfs-server
+    spec:
+      containers:
+      - name: nfs-server
+        image: itsthenetwork/nfs-server-alpine:12
+        securityContext:
+          privileged: true
+        env:
+          - name: SHARED_DIRECTORY
+            value: /exports
+
+        volumeMounts:
+          - name: nfs-storage
+            mountPath: /exports
+
+        ports:
+          - name: nfs
+            containerPort: 2049
+
+      volumes:
+        - name: nfs-storage
+          persistentVolumeClaim:
+            claimName: nfs-storage
