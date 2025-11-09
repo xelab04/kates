@@ -35,6 +35,9 @@ spec:
           - name: navidrome-users
             mountPath: /miscusers
 
+          - name: navidrome-nfs
+            mountPath: /navidromenfs
+
       volumes:
         - name: navidrome-data
           persistentVolumeClaim:
@@ -51,4 +54,10 @@ spec:
         - name: navidrome-users
           persistentVolumeClaim:
             claimName: navidrome-users
+
+        - name: navidrome-nfs
+          nfs:
+            server: nfs-server.nfs-server.svc.cluster.local
+            path: /navidrome
+
 status: {}
