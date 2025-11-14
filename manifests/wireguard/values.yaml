@@ -1,12 +1,12 @@
 wireguard:
   allowWan: true
   interfaceOpts:
-    PostUp: |
-      iptables -A FORWARD -i %i -j ACCEPT
-      iptables -A FORWARD -o %i -j ACCEPT
-    PostDown: |
-      iptables -D FORWARD -i %i -j ACCEPT
-      iptables -D FORWARD -o %i -j ACCEPT
+    PostUp:
+      - iptables -A FORWARD -i %i -j ACCEPT
+      - iptables -A FORWARD -o %i -j ACCEPT
+    PostDown:
+      - iptables -D FORWARD -i %i -j ACCEPT
+      - iptables -D FORWARD -o %i -j ACCEPT
   clients:
     - PublicKey: y/BWw15sGBI5trUJlbRAozs9ReHX5PvnqTXOv8TOjAA=
       AllowedIPs: 10.34.0.3/24
