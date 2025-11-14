@@ -1,4 +1,5 @@
 wireguard:
+  allowWan: false
   clients:
     - PublicKey: y/BWw15sGBI5trUJlbRAozs9ReHX5PvnqTXOv8TOjAA=
       AllowedIPs: 10.34.0.0/24
