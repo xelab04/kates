@@ -1,3 +1,5 @@
+runPodOnHostNetwork: true
+
 wireguard:
   allowWan: true
   interfaceOpts:
