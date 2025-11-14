@@ -5,7 +5,7 @@ wireguard:
     PostDown: "iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT"
   clients:
     - PublicKey: y/BWw15sGBI5trUJlbRAozs9ReHX5PvnqTXOv8TOjAA=
-      AllowedIPs: 10.34.0.3/24
+      AllowedIPs: 10.34.0.0/24
       FriendlyName: ArchDesktop
 
 service:
