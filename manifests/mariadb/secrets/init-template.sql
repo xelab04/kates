@@ -1,7 +1,10 @@
 CREATE DATABASE IF NOT EXISTS ghostdb;
+CREATE DATABASE IF NOT EXISTS cloudnativemu;
 
 CREATE USER IF NOT EXISTS 'ghostuser'@'%' IDENTIFIED BY 'password';
+CREATE USER IF NOT EXISTS 'cnmu'@'%' IDENTIFIED BY 'password';
 
 GRANT ALL PRIVILEGES ON ghostdb.* TO 'ghostuser'@'%';
+GRANT ALL PRIVILEGES ON cloudnativemu.* TO 'cnmu'@'%';
 
 FLUSH PRIVILEGES;
