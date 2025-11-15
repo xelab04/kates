@@ -1,3 +1,5 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
   name: cloudnativemu
   namespace: argocd
@@ -7,8 +9,8 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: kubernetes/
-    repoURL: https://github.com/cloud-native-mauritius/cloudnativemauritius.com.git
-    targetRevision: f-kubernetes
+    path: kubernetes
+    repoURL: https://github.com/xelab04/cloudnativemauritius.com.git
+    targetRevision: HEAD
   syncPolicy:
     automated: {}
