@@ -1,0 +1,7 @@
+CREATE DATABASE IF NOT EXISTS ghostdb;
+
+CREATE USER IF NOT EXISTS 'ghostuser'@'%' IDENTIFIED BY 'password';
+
+GRANT ALL PRIVILEGES ON ghostdb.* TO 'ghostuser'@'%';
+
+FLUSH PRIVILEGES;

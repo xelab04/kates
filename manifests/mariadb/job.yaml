@@ -1,0 +1,39 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: mariadb-init
+spec:
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+      - name: db-init
+        image: mariadb:12.0
+
+        command: ["sh", "-c"]
+        args:
+          - |
+            until mariadb-admin ping -h mariadb -u root -p"$MARIADB_ROOT_PASSWORD" --silent; do
+              echo "Waiting for MariaDB..."
+              sleep 2
+            done
+            mariadb -h mariadb -u root -p"$MARIADB_ROOT_PASSWORD" < /init/init.sql
+
+          # mariadb -h localhost -P 3306 -u root -p"${MARIADB_ROOT_PASSWORD}" < /init/init.sql
+
+        envFrom:
+          - secretRef:
+              name: mariadb-account
+
+        volumeMounts:
+        - name: initscript
+          mountPath: /init
+
+
+      volumes:
+      - name: initscript
+        secret:
+          secretName: mariadb-init-script-v1
+          items:
+            - key: init.sql
+              path: init.sql
