@@ -1,8 +1,8 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
   name: stump
   namespace: argocd
-  resourceVersion: "169777829"
-  uid: 88429d4b-ac1a-4051-8d9f-5af261b2547c
 spec:
   destination:
     namespace: stump
@@ -13,5 +13,6 @@ spec:
     repoURL: https://github.com/xelab04/kates.git
     targetRevision: HEAD
   syncPolicy:
+    automated: {}
     syncOptions:
     - CreateNamespace=true

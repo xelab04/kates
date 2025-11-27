@@ -17,7 +17,7 @@ metadata:
   name: stump-media
 spec:
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   resources:
     requests:
       storage: 5Gi
