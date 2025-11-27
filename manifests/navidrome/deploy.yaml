@@ -26,15 +26,6 @@ spec:
         volumeMounts:
           - name: navidrome-data
             mountPath: /data
-          - name: navidrome-music
-            mountPath: /music
-          - name: navidrome-alex
-            mountPath: /alex
-          - name: navidrome-dool
-            mountPath: /dool
-          - name: navidrome-users
-            mountPath: /miscusers
-
           - name: navidrome-nfs
             mountPath: /navidromenfs
 
@@ -42,18 +33,6 @@ spec:
         - name: navidrome-data
           persistentVolumeClaim:
             claimName: navidrome-data
-        - name: navidrome-music
-          persistentVolumeClaim:
-            claimName: navidrome-music
-        - name: navidrome-alex
-          persistentVolumeClaim:
-            claimName: navidrome-alex
-        - name: navidrome-dool
-          persistentVolumeClaim:
-            claimName: navidrome-dool
-        - name: navidrome-users
-          persistentVolumeClaim:
-            claimName: navidrome-users
 
         - name: navidrome-nfs
           nfs:
