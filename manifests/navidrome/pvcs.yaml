@@ -4,7 +4,7 @@ metadata:
   name: navidrome-data
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 512Mi
