@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: opensuse-lounge
+  namespace: argocd
+spec:
+  destination:
+    namespace: opensuse-lounge
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: kubernetes
+    repoURL: https://github.com/xelab04/opensuse-lounge.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
