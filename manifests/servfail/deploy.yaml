@@ -2,9 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   creationTimestamp: null
+  name: servfail-updater
   labels:
     app: servfail-updater
-    name: servfail-updater
 spec:
   replicas: 1
   selector:
