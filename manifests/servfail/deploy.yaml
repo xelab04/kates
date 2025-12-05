@@ -3,19 +3,19 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: frontendmu
-  name: frontendmu
+    app: servfail-updater
+    name: servfail-updater
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: frontendmu
+      app: servfail-updater
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: frontendmu
+        app: servfail-updater
     spec:
       imagePullSecrets:
       - name: regcred
