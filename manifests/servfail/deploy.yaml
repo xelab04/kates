@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: frontendmu
+  name: frontendmu
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontendmu
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: frontendmu
+    spec:
+      imagePullSecrets:
+      - name: regcred
+      containers:
+      - image: registry.alexbissessur.dev/servfailupdate:latest
+        name: servfailupdate
+        resources: {}
+
+        volumeMounts:
+        - name: ipstore
+          mountPath: /app/ipstore
+
+      volumes:
+      - name: ipstore
+        persistentVolumeClaim:
+          claimName: ipstore
+
+status: {}

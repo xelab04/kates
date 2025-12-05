@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: servfail-update
+  namespace: argocd
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: manifests/servfail
+    repoURL: https://github.com/xelab04/kates.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
