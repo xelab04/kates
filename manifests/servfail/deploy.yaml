@@ -24,6 +24,13 @@ spec:
         name: servfailupdate
         resources: {}
 
+        env:
+          - name: TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: servfail-secret
+                key: TOKEN
+
         volumeMounts:
         - name: ipstore
           mountPath: /app/ipstore
