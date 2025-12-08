@@ -2,10 +2,12 @@ ollama:
   models:
     pull:
       - "gemma3:1b"
+      - "granite4:1b-h"
+      - "granite4:350m-h"
 
 resources:
   requests:
-    memory: "1700Mi"
+    memory: "3Gi"
 
 persistentVolume:
-  size: 5Gi
+  size: 10Gi
