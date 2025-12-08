@@ -4,6 +4,7 @@ ollama:
       - "gemma3:1b"
       - "granite4:1b-h"
       - "granite4:350m-h"
+      - "granite4:350m"
 
 resources:
   requests:
