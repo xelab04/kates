@@ -8,15 +8,18 @@ spec:
     namespace: ollama
     server: https://kubernetes.default.svc
   project: default
-
-  source:
-    repoURL: https://github.com/xelab04/kates.git
-    targetRevision: main
-    path: manifests/ollama
-    helm:
-      valueFiles:
-        - values.yaml
-
   syncPolicy:
-    syncOptions:
-    - CreateNamespace=true
+    automated: {}
+  sources:
+    - repoURL: https://github.com/xelab04/kates.git
+      targetRevision: main
+      ref: values
+
+    - chart: ollama
+      repoURL: https://helm.otwld.com/
+      targetRevision: 1.35.0
+      helm:
+        releaseName: ollama
+        valueFiles:
+          - $values/manifests/ollama/values.yaml
+        ignoreMissingValueFiles: true

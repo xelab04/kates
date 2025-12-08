@@ -10,4 +10,5 @@ resources:
     memory: "3Gi"
 
 persistentVolume:
+  enabled: "true"
   size: 10Gi
