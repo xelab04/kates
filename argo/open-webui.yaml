@@ -1,3 +1,5 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
   name: open-webui
   namespace: argocd
@@ -9,4 +11,4 @@ spec:
   source:
     chart: open-webui
     repoURL: https://helm.openwebui.com/
-    targetRevision: 7.0.1
+    targetRevision: 8.19.0
