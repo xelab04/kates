@@ -6,6 +6,14 @@ grafana:
     passwordKey: admin-password
 
   ingress:
+    annotations: {
+      "kubernetes.io/ingress.class": "traefik",
+      "ingress.kubernetes.io/force-ssl-redirect": "false",
+      "ingress.kubernetes.io/ssl-redirect": "false",
+      "traefik.ingress.kubernetes.io/router.tls": "false",
+      "traefik.ingress.kubernetes.io/frontend-entry-points": web
+    }
+
     enabled: true
     ingressClassName: traefik
     hosts:
