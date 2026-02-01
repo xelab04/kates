@@ -1,0 +1,13 @@
+grafana:
+  # Use an existing secret for the admin user.
+  admin:
+    existingSecret: "grafana-password"
+    userKey: admin-user
+    passwordKey: admin-password
+
+  ingress:
+    enabled: true
+    ingressClassName: traefik
+    hosts:
+      - grafana.alexbissessur.dev
+    path: /
