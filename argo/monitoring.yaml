@@ -17,9 +17,9 @@ spec:
 
     - chart: kube-prometheus-stack
       repoURL: https://prometheus-community.github.io/helm-charts
-      targetRevision: 80.0.0
+      targetRevision: 81.4.2
       helm:
         releaseName: kube-prometheus-stack
         valueFiles:
           - $values/manifests/monitoring/values.yaml
-        ignoreMissingValueFiles: true
+        # ignoreMissingValueFiles: true
