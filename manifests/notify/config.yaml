@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ntfy
+data:
+  server.yml: |
+    # Template: https://github.com/binwiederhier/ntfy/blob/main/server/server.yml
+
+    base-url: https://notify.alexbissessur.dev
+    auth-users: ["alex:$2a$12$ApL.qd9.SNp3ZIbGRl2jR.3XsHhQcBsSJofEUa0s/9i5UnWpI/Gk.:admin"]
+    auth-access: ["alex:kraft:rw", "*:*:none"]
