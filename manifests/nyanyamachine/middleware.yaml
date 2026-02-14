@@ -1,0 +1,10 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: matrix-well-known-redirect
+  namespace: default
+spec:
+  redirectRegex:
+    regex: "^https?://nyanyamachine.dev/.well-known/matrix/(.*)"
+    replacement: "https://matrix.nyanyamachine.dev/.well-known/matrix/${1}"
+    permanent: true
