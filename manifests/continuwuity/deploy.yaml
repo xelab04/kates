@@ -24,9 +24,19 @@ spec:
 
         env:
         - name: CONTINUWUITY_SERVER_NAME
-          value: "matrix.nyanyamachine.dev"
+          value: "nyanyamachine.dev"
+        - name: CONDUWUIT_WELL_KNOWN__CLIENT
+          value: "https://matrix.nyanyamachine.dev"
+        - name: CONDUWUIT_WELL_KNOWN__SERVER
+          value: "matrix.nyanyamachine.dev:443"
+        - name: CONDUWUIT_ALLOW_FEDERATION
+          value : "true"
+        - name: CONDUWUIT_ALLOW_ENCRYPTION
+          value: "true"
         - name: CONTINUWUITY_ALLOW_REGISTRATION
-          value: "false"
+          value: "true"
+        - name: CONTINUWUITY_REGISTRATION_TOKEN
+          value: "skrrtbleh"
         - name: CONTINUWUITY_DATABASE_PATH
           value: /var/lib/continuwuity
         - name: CONTINUWUITY_PORT
