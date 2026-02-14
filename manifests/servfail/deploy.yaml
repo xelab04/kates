@@ -30,11 +30,11 @@ spec:
               secretKeyRef:
                 name: servfail-secret
                 key: TOKEN
-          - name: TOKENNYA
-            valueFrom:
-              secretKeyRef:
-                name: servfail-secret
-                key: TOKENNYA
+          #- name: TOKENNYA
+          #  valueFrom:
+          #    secretKeyRef:
+          #      name: servfail-secret
+          #      key: TOKENNYA
     
 
         volumeMounts:
