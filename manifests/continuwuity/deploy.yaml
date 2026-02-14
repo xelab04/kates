@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: continuwuity
+  labels:
+    app: continuwuity
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: continuwuity
+  template:
+    metadata:
+      labels:
+        app: continuwuity
+    spec:
+      containers:
+      - name: continuwuity
+        image: forgejo.ellis.link/continuwuation/continuwuity:main
+        ports:
+        - containerPort: 6167
+
+        env:
+        - name: CONTINUWUITY_SERVER_NAME
+          value: "matrix.nyanyamachine.dev"
+        - name: CONTINUWUITY_ALLOW_REGISTRATION
+          value: "false"
+        - name: CONTINUWUITY_DATABASE_PATH
+          value: /var/lib/continuwuity
+        - name: CONTINUWUITY_PORT
+          value: "6167"
+        - name: CONTINUWUITY_ADDRESS
+          value: "0.0.0.0"
+
+        volumeMounts:
+        - name: db-storage
+          mountPath: /var/lib/continuwuity/
+
+      volumes:
+      - name: db-storage
+        persistentVolumeClaim:
+          claimName: continuwuity-db-pvc

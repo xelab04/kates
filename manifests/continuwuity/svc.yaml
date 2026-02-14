@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: continuwuity-svc
+spec:
+  selector:
+    app: continuwuity
+  ports:
+    - protocol: TCP
+      port: 6167
+      targetPort: 6167
+  type: ClusterIP
