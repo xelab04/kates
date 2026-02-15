@@ -1,0 +1,16 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dockerreg-route
+spec:
+  entryPoints:
+  - websecure
+  - web
+  routes:
+  - kind: Rule
+    match: Host(`registry.alexbissessur.dev`)
+    services:
+    - name: docker-registry
+      port: 5000
+  tls:
+    certResolver: le
