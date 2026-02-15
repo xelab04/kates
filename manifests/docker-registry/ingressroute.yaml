@@ -10,7 +10,7 @@ spec:
   - kind: Rule
     match: Host(`registry.alexbissessur.dev`)
     services:
-    - name: docker-registry
+    - name: docker-reg-svc
       port: 5000
   tls:
     certResolver: le
