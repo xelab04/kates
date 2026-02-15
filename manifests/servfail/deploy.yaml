@@ -24,12 +24,12 @@ spec:
         name: servfailupdate
         resources: {}
 
-        env:
-          - name: TOKEN
-            valueFrom:
-              secretKeyRef:
-                name: servfail-secret
-                key: TOKEN
+        #env:
+        #  - name: TOKEN
+        #    valueFrom:
+        #      secretKeyRef:
+        #        name: servfail-secret
+        #        key: TOKEN
           #- name: TOKENNYA
           #  valueFrom:
           #    secretKeyRef:
