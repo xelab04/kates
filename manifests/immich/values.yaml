@@ -36,9 +36,9 @@ immich:
     trash:
       enabled: false
       days: 30
-    # storageTemplate:
-    #   enabled: true
-    #   template: "{{y}}/{{y}}-{{MM}}-{{dd}}/{{filename}}"
+    storageTemplate:
+      enabled: true
+      template: "{{y}}/{{y}}-{{MM}}-{{dd}}/{{filename}}"
 
 
 # redis:
