@@ -10,8 +10,6 @@ controllers:
         image:
           repository: docker.io/superseriousbusiness/gotosocial
           tag: "0.21.2"
-        envFrom:
-          - secret: gts-oidc
         env:
           TZ: Indian/Mauritius
           GTS_HOST: gts.alexbissessur.dev
