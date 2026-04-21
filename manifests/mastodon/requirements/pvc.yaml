@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: gotosocial-data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  # it goes on that one usb wd purple drive
+  storageClassName: longhorn-surveillance
+  resources:
+    requests:
+      storage: 50Gi
