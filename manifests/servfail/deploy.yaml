@@ -30,6 +30,11 @@ spec:
              secretKeyRef:
                name: servfail-secret
                key: TOKEN
+         - name: TOKENDYN
+           valueFrom:
+            secretKeyRef:
+              name: servfail-secret
+              key: TOKENDYN
          - name: TOKENNYA
            valueFrom:
              secretKeyRef:
