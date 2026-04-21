@@ -29,3 +29,22 @@ spec:
             value: http://ghost-svc.ghost.svc.cluster.local:80
         resources: {}
 status: {}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: anubis-alex
+  name: anubis-alex
+spec:
+  ports:
+  - port: 3000
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app: anubis-alex
+status:
+  loadBalancer: {}
