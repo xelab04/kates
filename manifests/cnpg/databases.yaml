@@ -1,0 +1,10 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+metadata:
+  name: gotosocial
+  namespace: cnpg
+spec:
+  name: gotosocial
+  owner: gotosocial
+  cluster:
+    name: main-postgres
