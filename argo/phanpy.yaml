@@ -24,7 +24,7 @@ spec:
       repoURL: https://bjw-s-labs.github.io/helm-charts/
       targetRevision: 3.7.3
       helm:
-        releaseName: app-template
+        # releaseName: app-template
         valueFiles:
           - $values/manifests/phanpy/values.yaml
         ignoreMissingValueFiles: true

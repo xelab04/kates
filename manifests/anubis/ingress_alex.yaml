@@ -33,6 +33,13 @@ spec:
       port: 80
 
   - kind: Rule
+    match: Host(`alexbissessur.dev`) && (PathPrefix(`/.well-known/webfinger`) || PathPrefix(`/.well-known/host-meta`) || PathPrefix(`/.well-known/nodeinfo`))
+    services:
+    - name: mastodon
+      namespace: mastodon
+      port: 8080
+
+  - kind: Rule
     match: Host(`alexbissessur.dev`)
     services:
     - name: anubis-alex
