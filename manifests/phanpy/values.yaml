@@ -1,5 +1,5 @@
 controllers:
-  main:
+  phanpy:
     replicas: 1
     type: deployment
 
@@ -19,7 +19,7 @@ controllers:
 
 service:
   main:
-    controller: main
+    controller: phanpy
     ports:
       http:
         port: 8080
