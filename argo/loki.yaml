@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: loki
+  namespace: argocd
+spec:
+  destination:
+    namespace: monitoring
+    server: https://kubernetes.default.svc
+  project: default
+  syncPolicy:
+    automated: {}
+  sources:
+    - repoURL: https://github.com/xelab04/kates.git
+      targetRevision: main
+      ref: values
+
+    - chart: loki
+      repoURL: https://grafana.github.io/helm-charts
+      targetRevision: 7.0.0
+      helm:
+        releaseName: loki
+        valueFiles:
+          - $values/manifests/loki/values.yaml
+        ignoreMissingValueFiles: true
