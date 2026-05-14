@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: docker-registry-ui
+  namespace: argocd
+spec:
+  destination:
+    namespace: docker-registry-ui
+    server: https://kubernetes.default.svc
+  project: default
+  syncPolicy:
+    automated: {}
+  sources:
+    - repoURL: https://github.com/xelab04/kates.git
+      targetRevision: main
+      ref: values
+
+    - chart: docker-registry-ui
+      repoURL: https://eznix86.github.io/docker-registry-ui
+      targetRevision: 0.2.0
+      helm:
+        releaseName: docker-registry-ui
+        valueFiles:
+          - $values/manifests/docker-registry-ui/values.yaml
+        ignoreMissingValueFiles: false

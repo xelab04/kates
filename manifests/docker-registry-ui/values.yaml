@@ -1,0 +1,11 @@
+env:
+  - name: REGISTRY_URL
+    valueFrom:
+      secretKeyRef:
+        name: registry-ui-secret
+        key: url
+  - name: REGISTRY_AUTH
+    valueFrom:
+      secretKeyRef:
+        name: registry-ui-secret
+        key: auth
