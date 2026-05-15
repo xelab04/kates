@@ -45,10 +45,10 @@ spec:
   #   recovery:
   #     source: source
 
-  # externalClusters:
-  # - name: source
-  #   plugin:
-  #     name: barman-cloud.cloudnative-pg.io
-  #     parameters:
-  #       barmanObjectName: cnpg-main
-  #       serverName: cnpg-main
+  externalClusters:
+  - name: source
+    plugin:
+      name: barman-cloud.cloudnative-pg.io
+      parameters:
+        barmanObjectName: cnpg-main
+        serverName: cnpg-main

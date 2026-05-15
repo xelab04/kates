@@ -40,6 +40,16 @@ spec:
   cluster:
     name: cnpg-main
 
+---
+# this no work: cannot proceed with the backup as the cluster has no backup section
+# apiVersion: postgresql.cnpg.io/v1
+# kind: Backup
+# metadata:
+#   name: test-backup
+# spec:
+#   method: barmanObjectStore
+#   cluster:
+#     name: cnpg-main
 
 ---
 
