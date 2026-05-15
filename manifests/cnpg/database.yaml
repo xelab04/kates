@@ -6,7 +6,17 @@ metadata:
 spec:
   instances: 3
   storage:
-    size: 20Gi
+    size: 15Gi
+
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: backup-objectstore
+
+  postgresql:
+    parameters:
+      max_slot_wal_keep_size: "5GB"
 
   managed:
     roles:
@@ -22,13 +32,23 @@ spec:
       #   passwordSecret:
       #     name: kraft-db-password
 
-  bootstrap:
-    initdb:
-      database: default
-      owner: root
-      secret:
-        name: root-user-secret
-      postInitSQL:
-        - CREATE DATABASE gotosocial OWNER gotosocial;
-      #   - CREATE DATABASE mastodon OWNER mastodon;
-      #   - CREATE DATABASE immich OWNER immich;
+  # bootstrap:
+  #   initdb:
+  #     database: default
+  #     owner: root
+  #     secret:
+  #       name: root-user-secret
+  #     postInitSQL:
+  #       - CREATE DATABASE gotosocial OWNER gotosocial;
+  #       - CREATE DATABASE mastodon OWNER mastodon;
+  #       - CREATE DATABASE immich OWNER immich;
+  #   recovery:
+  #     source: source
+
+  # externalClusters:
+  # - name: source
+  #   plugin:
+  #     name: barman-cloud.cloudnative-pg.io
+  #     parameters:
+  #       barmanObjectName: cnpg-main
+  #       serverName: cnpg-main

@@ -1,0 +1,54 @@
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: backup-objectstore
+  namespace: cnpg
+spec:
+  retentionPolicy: "14d"
+  instanceSidecarConfiguration:
+    resources:
+      limits:
+        memory: 1Gi
+      requests:
+        memory: 128Mi
+        cpu: 50m
+  configuration:
+    s3Credentials:
+      accessKeyId:
+        name: wasabi-secret
+        key: ACCESS_KEY_ID
+      secretAccessKey:
+        name: wasabi-secret
+        key: SECRET_ACCESS_KEY
+    endpointURL: "https://s3.ap-southeast-1.wasabisys.com"
+    destinationPath: "s3://cnpg-backup-alexb04/"
+    wal:
+      compression: bzip2
+      maxParallel: 4
+
+---
+
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: cnpg-main
+  namespace: cnpg
+spec:
+  # immediate: true
+  schedule: "0 0 23 * * *"  # At 11pm every day
+  backupOwnerReference: self
+  cluster:
+    name: cnpg-main
+
+
+---
+
+# apiVersion: v1
+# data:
+#   ACCESS_KEY_ID: example
+#   SECRET_ACCESS_KEY: example
+# kind: Secret
+# metadata:
+#   name: wasabi-secret
+#   namespace: cnpg
+# type: Opaque
