@@ -13,4 +13,4 @@ spec:
     - name: continuwuity-svc
       port: 6167
   tls:
-    secretName: matrix-cert # certResolver: le
+    certResolver: le
