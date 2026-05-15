@@ -39,6 +39,9 @@ spec:
   backupOwnerReference: self
   cluster:
     name: cnpg-main
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io
 
 ---
 # this no work: cannot proceed with the backup as the cluster has no backup section
