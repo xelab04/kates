@@ -34,7 +34,7 @@ metadata:
   name: cnpg-main
   namespace: cnpg
 spec:
-  # immediate: true
+  immediate: true
   schedule: "0 0 23 * * *"  # At 11pm every day
   backupOwnerReference: self
   cluster:
