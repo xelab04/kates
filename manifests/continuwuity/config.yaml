@@ -24,7 +24,7 @@ data:
     dns_cache_entries = 1_000_000
     dns_timeout = 60
     query_over_tcp_only = true
-    ip_lookup_strategy = 3
+    ip_lookup_strategy = 1
 
     # User settings
     allow_encryption = true
