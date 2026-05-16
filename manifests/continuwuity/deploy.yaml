@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: continuwuity
-        image: forgejo.ellis.link/continuwuation/continuwuity:main
+        image: forgejo.ellis.link/continuwuation/continuwuity:latest
         ports:
         - containerPort: 6167
 
