@@ -4,6 +4,7 @@ data:
 
     [global]
       p: 3923
+      xff-src: lan
       e2dsa  # enable file indexing and filesystem scanning
       e2ts   # and enable multimedia indexing
       z, qr  # and zeroconf and qrcode (you can comma-separate arguments)
