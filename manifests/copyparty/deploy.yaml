@@ -22,7 +22,7 @@ spec:
         name: ac
         args:
             - "--rproxy"
-            - "10.42.0.0/16"
+            - "-1"
         ports:
         - containerPort: 3923
         resources: {}
