@@ -20,6 +20,9 @@ spec:
       containers:
       - image: copyparty/ac
         name: ac
+        args:
+            - "--rproxy"
+            - "10.42.0.0/16"
         ports:
         - containerPort: 3923
         resources: {}
